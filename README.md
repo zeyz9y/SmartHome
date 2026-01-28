@@ -82,13 +82,13 @@ Uygulama, **STM32** üzerinde çalışan sistem ile **HC-05 Bluetooth Classic (S
 1. Repo’yu klonla:
    ```bash
    git clone https://github.com/zeyz9y/SmartHome.git
-Android Studio ile aç ve Gradle Sync bitmesini bekle.
+2.Android Studio ile aç ve Gradle Sync bitmesini bekle.
 
-Uygulamayı gerçek cihazda çalıştır.
+3.Uygulamayı gerçek cihazda çalıştır.
 
-Telefonun Bluetooth ayarlarından HC-05 ile eşleştir.
+4.Telefonun Bluetooth ayarlarından HC-05 ile eşleştir.
 
-Uygulamada Devices ekranından cihazı seç ve bağlan.
+5.Uygulamada Devices ekranından cihazı seç ve bağlan.
 
 🔐 Android 12+ Bluetooth İzinleri (API 31+)
 Android 12 (API 31) ve üzeri sürümlerde Bluetooth izinleri runtime istenir.
