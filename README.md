@@ -83,6 +83,8 @@ Uygulama, **STM32** üzerinde çalışan sistemden **DHT11 sıcaklık/nem verisi
 4. Telefon Bluetooth ayarlarından HC-05 ile eşleştir (PIN: 1234 / 0000).
 5. Uygulamada Devices ekranından cihazı seç ve bağlan.
 
+---
+
 ## Android 12+ Bluetooth İzinleri (API 31+)
 
 Android 12 ve üzeri sürümlerde Bluetooth izinleri runtime istenir:
@@ -93,11 +95,15 @@ Android 12 ve üzeri sürümlerde Bluetooth izinleri runtime istenir:
 
 İzin yönetimi projede “ihtiyaç olduğunda isteme” yaklaşımıyla ele alınmıştır.
 
+---
+
 ## Android 13+ Bildirim İzni (API 33+)
 
 Alerts/Schedules ekranlarında bildirim kullanılıyorsa:
 
 - POST_NOTIFICATIONS runtime izni gerekebilir.
+
+---  
 
 ## Test Senaryoları
 
@@ -113,11 +119,15 @@ Alerts/Schedules ekranlarında bildirim kullanılıyorsa:
 
 - Navigasyon: Devices ekranına geçiş & cihaz seçimi
 
+---
+
 ## Roadmap
 
 - Başlangıçta ESP-01 Wi-Fi ile HTTP/Retrofit planlandı; modül temin edilemediği için nihai çözüm Bluetooth olarak bırakıldı.
 
 - İleride Wi-Fi entegre edilirse Bluetooth/TCP geçişi kolay olacak şekilde arayüz ve yapı sadeleştirildi.
+
+---
 
 ## Ekran Görüntüleri
 
