@@ -107,7 +107,7 @@ Bağlantı: Dashboard’tan bağlanma ve durum takibi
 
 Veri akışı: 1 saniyede bir sıcaklık/nem güncellemesi
 
-LED kontrol: switch ile LEDON/LEDOFF
+LED kontrol: switch ile LEDON / LEDOFF
 
 Yeniden bağlanma: kopma sonrası sorunsuz devam
 
@@ -121,6 +121,4 @@ Başlangıçta ESP-01 Wi-Fi ile HTTP/Retrofit planlandı; modül temin edilemedi
 
 Ekran Görüntüleri
 
-Küçük görünsün diye HTML ile boyutlandırılmıştır. Tıklayınca dosyayı açabilirsiniz.
-
-<p align="center"> <a href="docs/dashboard.jpeg"><img src="docs/dashboard.jpeg" width="260" /></a> <a href="docs/devices.jpeg"><img src="docs/devices.jpeg" width="260" /></a> <a href="docs/schedules.jpeg"><img src="docs/schedules.jpeg" width="260" /></a> </p>
+<p align="center"> <a href="docs/dashboard.jpeg"><img src="docs/dashboard.jpeg" width="260" /></a> <a href="docs/devices.jpeg"><img src="docs/devices.jpeg" width="260" /></a> <a href="docs/schedules.jpeg"><img src="docs/schedules.jpeg" width="230" /></a> </p>
