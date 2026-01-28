@@ -8,7 +8,7 @@ Uygulama, **STM32** üzerinde çalışan sistemden **DHT11 sıcaklık/nem verisi
 
 ---
 
-## 🚀 Özellikler
+##  Özellikler
 
 ### 1) Gerçek zamanlı veri izleme
 - STM32’den her saniye gelen sıcaklık/nem verileri UI’da güncellenir.
@@ -43,7 +43,7 @@ Uygulama, **STM32** üzerinde çalışan sistemden **DHT11 sıcaklık/nem verisi
 
 ---
 
-## 🧱 Mimari
+##  Mimari
 - **UI:** Jetpack Compose + Navigation  
 - **State:** `StateFlow`  
 - **Mimari:** MVVM (**Repository → ViewModel → UI**)  
@@ -52,7 +52,7 @@ Uygulama, **STM32** üzerinde çalışan sistemden **DHT11 sıcaklık/nem verisi
 
 ---
 
-## 📁 Paket/Klasör Yapısı (Genel)
+##  Paket/Klasör Yapısı (Genel)
 > Projede isimler farklı paketlere dağılmış olabilir; rol dağılımı aşağıdaki gibidir:
 
 - `bt/` : Bluetooth bağlantı ve IO (socket, read/write)
@@ -66,7 +66,7 @@ Uygulama, **STM32** üzerinde çalışan sistemden **DHT11 sıcaklık/nem verisi
 
 ---
 
-## ✅ Gereksinimler
+##  Gereksinimler
 - Android Studio (güncel stable)
 - Bluetooth destekli Android cihaz (**emülatör önerilmez**)
 - HC-05 (veya Classic SPP uyumlu modül) + STM32 sistemi
@@ -74,7 +74,7 @@ Uygulama, **STM32** üzerinde çalışan sistemden **DHT11 sıcaklık/nem verisi
 
 ---
 
-## ⚙️ Kurulum ve Çalıştırma
+##  Kurulum ve Çalıştırma
 1. Repo’yu klonla:
    ```bash
    git clone https://github.com/zeyz9y/SmartHome.git
@@ -83,7 +83,7 @@ Uygulama, **STM32** üzerinde çalışan sistemden **DHT11 sıcaklık/nem verisi
 4. Telefon Bluetooth ayarlarından HC-05 ile eşleştir (PIN: 1234 / 0000).
 5. Uygulamada Devices ekranından cihazı seç ve bağlan.
 
-🔐 Android 12+ Bluetooth İzinleri (API 31+)
+Android 12+ Bluetooth İzinleri (API 31+)
 
 Android 12 ve üzeri sürümlerde Bluetooth izinleri runtime istenir:
 
@@ -93,13 +93,13 @@ BLUETOOTH_SCAN (tarama yapılıyorsa)
 
 İzin yönetimi projede “ihtiyaç olduğunda isteme” yaklaşımıyla ele alınmıştır.
 
-🔔 Android 13+ Bildirim İzni (API 33+)
+Android 13+ Bildirim İzni (API 33+)
 
 Alerts/Schedules ekranlarında bildirim kullanılıyorsa:
 
 POST_NOTIFICATIONS runtime izni gerekebilir.
 
-🧪 Test Senaryoları
+Test Senaryoları
 
 Eşleştirme: Telefon ↔ HC-05
 
@@ -113,13 +113,13 @@ Yeniden bağlanma: kopma sonrası sorunsuz devam
 
 Navigasyon: Devices ekranına geçiş & cihaz seçimi
 
-🛣️ Roadmap
+Roadmap
 
 Başlangıçta ESP-01 Wi-Fi ile HTTP/Retrofit planlandı; modül temin edilemediği için nihai çözüm Bluetooth olarak bırakıldı.
 
 İleride Wi-Fi entegre edilirse Bluetooth/TCP geçişi kolay olacak şekilde arayüz ve yapı sadeleştirildi.
 
-🖼️ Ekran Görüntüleri
+Ekran Görüntüleri
 
 Küçük görünsün diye HTML ile boyutlandırılmıştır. Tıklayınca dosyayı açabilirsiniz.
 
