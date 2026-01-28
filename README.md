@@ -129,10 +129,10 @@ Başlangıçta ESP-01 Wi-Fi ile HTTP/Retrofit yaklaşımı planlandı; fiziksel 
 ## 🖼️ Ekran Görüntüleri
 
 ### Dashboard
-![Dashboard](docs/dashboard)
+![Dashboard](docs/dashboard.jpeg)
 
 ### Devices
-![Devices](docs/devices)
+![Devices](docs/devices.jpeg)
 
 ### Schedules
-![Schedules](docs/schedules)
+![Schedules](docs/schedules.jpeg)
