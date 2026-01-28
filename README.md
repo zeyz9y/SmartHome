@@ -1,65 +1,63 @@
-# SmartHome – Akıllı Ev Android Uygulaması  
-**STM32 + HC-05 (Bluetooth Classic / SPP) + Jetpack Compose + MVVM**
+# SmartHome – Akıllı Ev Android Uygulaması
+**STM32 + HC-05 (Bluetooth Classic / SPP) · Jetpack Compose · MVVM**
 
-Bu repo, staj projesi kapsamında geliştirilen **SmartHome** Android uygulamasını içerir.  
-Uygulama, **STM32** üzerinde çalışan sistem ile **HC-05 Bluetooth Classic (SPP)** üzerinden haberleşerek **DHT11 sıcaklık/nem verisini gerçek zamanlı gösterir** ve **LED (akıllı evde klima/cihaz simülasyonu gibi) kontrolü** sağlar.
+SmartHome, staj projesi kapsamında geliştirilen bir Android uygulamasıdır.  
+Uygulama, **STM32** üzerinde çalışan sistemden **DHT11 sıcaklık/nem verisini** kablosuz olarak alır ve **HC-05 Bluetooth Classic (SPP)** üzerinden haberleşerek verileri gerçek zamanlı gösterir. Ayrıca uygulama üzerinden **LED kontrolü** yapılır (akıllı evde klima/cihaz aç-kapa gibi senaryoları simüle etmek için kullanılmıştır).
 
-> Projenin erken aşamasında test amaçlı **PC köprüsü** (Python + Flask + pySerial) denenmiş, daha sonra doğrudan **telefon ↔ HC-05** bağlantısına geçilmiştir.
+> Projenin erken aşamasında test amaçlı **Python + Flask + pySerial** ile PC üzerinden köprü denemesi yapılmış, daha sonra doğrudan **telefon ↔ HC-05** bağlantısına geçilmiştir.
 
 ---
 
 ## 🚀 Özellikler
 
-### Gerçek zamanlı veri izleme
-- STM32’den her saniye gelen **sıcaklık/nem verileri** UI’da anlık güncellenir.
+### 1) Gerçek zamanlı veri izleme
+- STM32’den her saniye gelen sıcaklık/nem verileri UI’da güncellenir.
 - Veri formatı (STM32 → Android):  
-  `XX.X,YY.Y\r\n`  (ör. `23.4,58.1\r\n`)
+  `XX.X,YY.Y\r\n` (örn. `23.4,58.1\r\n`)
 
-### Cihaz kontrolü (LED / Simülasyon)
-- Uygulamadaki switch/tuş ile **LED ON/OFF** komutu gönderilir:
+### 2) Cihaz kontrolü (LED / Simülasyon)
+- Uygulama üzerinden komut gönderme:
   - `LEDON`
   - `LEDOFF`
-- “Optimistic update” yaklaşımı: UI hızlı güncellenir, hata olursa geri alınır.
+- UI tarafında “optimistic update”: hızlı geri bildirim, hata olursa geri alma.
 
-### Manuel / Otomatik mod mantığı (firmware tarafı)
-- Manuel komut verildiğinde sistem **MANUAL** moda geçer.
+### 3) Manuel / Otomatik mod mantığı (firmware tarafı)
+- Manuel komut sonrası sistem **MANUAL** moda geçer.
 - Otomatik modda sıcaklık **30°C** eşiğini geçince LED otomatik aktif olabilir.
 - STM32 tarafında OLED ekranda sıcaklık/nem + LED durumu + mod bilgisi gösterilebilir.
 
-### Bağlantı dayanıklılığı
-- Eşleştirilmiş cihazı **adıyla** bulup bağlanma (bondedDevices)
-- RFCOMM soketi ile SPP bağlantısı
-- Bağlantı hatalarında **yeniden bağlanma** (reconnect) desteği
-- “socket closed / read failed” gibi durumlarda temiz disconnect → yeniden bağlanma akışı
+### 4) Bağlantı dayanıklılığı
+- Eşleştirilmiş cihazı **adıyla** bulup bağlanma (`bondedDevices`)
+- **RFCOMM** soketi ile SPP bağlantısı
+- Kopmalarda **reconnect** desteği
+- “socket closed / read failed” durumlarında temiz `disconnect → reconnect` akışı
 
-### Uygulama ekranları
-- **Dashboard:** sıcaklık/nem kartları, LED kontrolü, bağlantı durumu ikonu
-- **Devices:** eşleştirilmiş cihaz listesi / cihaz seçimi & ekleme akışı
-- **Alerts & Schedules:** uyarılar ve zamanlayıcılar (ısıtma/cihaz zamanlaması)  
+### 5) Uygulama ekranları
+- **Dashboard:** sıcaklık/nem kartları, LED kontrol switch’i, bağlantı ikonu
+- **Devices:** eşleştirilmiş cihaz listesi, cihaz seçimi/ekleme akışı
+- **Alerts & Schedules:** uyarılar ve zamanlayıcılar  
   - Haftalık gün seçimi + başlangıç/bitiş saatleri  
   - Bir sonraki tetik zamanını gösterme  
   - Android 13+ bildirim izni yönetimi  
-  - Arka planda çalışan kısa süreli servis ile komut gönderme yaklaşımı
+  - Arka planda kısa süreli servis ile komut gönderme yaklaşımı
 
 ---
 
 ## 🧱 Mimari
-
-- **UI:** Jetpack Compose + Navigation
-- **State yönetimi:** `StateFlow`
-- **Mimari:** **MVVM (Repository → ViewModel → UI)**
-- **Paylaşım:** CompositionLocal ile ViewModel paylaşımı (projede kullanıldı)
-- **Bluetooth:** Classic / SPP (HC-05 BLE değildir)
+- **UI:** Jetpack Compose + Navigation  
+- **State:** `StateFlow`  
+- **Mimari:** MVVM (**Repository → ViewModel → UI**)  
+- **Paylaşım:** CompositionLocal ile ViewModel paylaşımı (projede kullanıldı)  
+- **Bluetooth:** Classic / SPP (**HC-05 BLE değildir**)  
 
 ---
 
 ## 📁 Paket/Klasör Yapısı (Genel)
+> Projede isimler farklı paketlere dağılmış olabilir; rol dağılımı aşağıdaki gibidir:
 
-> Projede isimler farklı paketlere dağılmış olabilir; rol dağılımı şu şekilde:
-
-- `bt/` : Bluetooth bağlantı ve IO (socket, read/write, stream)
+- `bt/` : Bluetooth bağlantı ve IO (socket, read/write)
 - `repository/` : cihaz bulma, bağlanma, satır bazlı okuma, komut gönderme, reconnect
-- `viewmodel/` : StateFlow ile UI state’leri, LED toggle vb.
+- `viewmodel/` : UI state (StateFlow), LED toggle vb.
 - `ui/` : Dashboard / Devices / Alerts / Schedules ekranları
 - `service/` : arka plan komut akışı / kısa süreli servis (varsa)
 - `alarm/` : zamanlayıcı altyapısı (varsa)
@@ -69,30 +67,25 @@ Uygulama, **STM32** üzerinde çalışan sistem ile **HC-05 Bluetooth Classic (S
 ---
 
 ## ✅ Gereksinimler
-
-- Android Studio (güncel stable önerilir)
-- Bluetooth destekli Android cihaz (emülatör önerilmez)
-- **HC-05** (veya Classic SPP uyumlu benzeri) + STM32 sistemi
-- STM32 tarafında seri hız (örnek): **9600 baud** (proje ayarına göre)
+- Android Studio (güncel stable)
+- Bluetooth destekli Android cihaz (**emülatör önerilmez**)
+- HC-05 (veya Classic SPP uyumlu modül) + STM32 sistemi
+- STM32 seri hız: örn. **9600 baud** (proje ayarına göre)
 
 ---
 
 ## ⚙️ Kurulum ve Çalıştırma
-
 1. Repo’yu klonla:
    ```bash
    git clone https://github.com/zeyz9y/SmartHome.git
-2.Android Studio ile aç ve Gradle Sync bitmesini bekle.
-
-3.Uygulamayı gerçek cihazda çalıştır.
-
-4.Telefonun Bluetooth ayarlarından HC-05 ile eşleştir.
-
-5.Uygulamada Devices ekranından cihazı seç ve bağlan.
+2. Android Studio ile aç ve Gradle Sync bitmesini bekle.
+3. Uygulamayı gerçek cihazda çalıştır.
+4. Telefon Bluetooth ayarlarından HC-05 ile eşleştir (PIN: 1234 / 0000).
+5. Uygulamada Devices ekranından cihazı seç ve bağlan.
 
 🔐 Android 12+ Bluetooth İzinleri (API 31+)
-Android 12 (API 31) ve üzeri sürümlerde Bluetooth izinleri runtime istenir.
-Projede kullanılan akışa göre şu izinler gerekir:
+
+Android 12 ve üzeri sürümlerde Bluetooth izinleri runtime istenir:
 
 BLUETOOTH_CONNECT
 
@@ -101,38 +94,33 @@ BLUETOOTH_SCAN (tarama yapılıyorsa)
 İzin yönetimi projede “ihtiyaç olduğunda isteme” yaklaşımıyla ele alınmıştır.
 
 🔔 Android 13+ Bildirim İzni (API 33+)
-Alerts/Schedules ekranlarında bildirim kullanılıyorsa Android 13+ için:
+
+Alerts/Schedules ekranlarında bildirim kullanılıyorsa:
 
 POST_NOTIFICATIONS runtime izni gerekebilir.
 
-🔗 Eşleştirme (Pairing)
-HC-05 için yaygın PIN: 1234 veya 0000 (modül konfigürasyonuna bağlı)
-
 🧪 Test Senaryoları
+
 Eşleştirme: Telefon ↔ HC-05
 
-Bağlantı: Dashboard’tan bağlanma/bağlantı ikonuyla durum takibi
+Bağlantı: Dashboard’tan bağlanma ve durum takibi
 
-Veri akışı: 1 sn’de bir gelen sıcaklık/nem verisinin UI’da güncellenmesi
+Veri akışı: 1 saniyede bir sıcaklık/nem güncellemesi
 
-LED kontrol: switch ile LEDON/LEDOFF komutlarının çalışması
+LED kontrol: switch ile LEDON/LEDOFF
 
-Yeniden bağlanma: bağlantı kopup geldiğinde sorunsuz devam etmesi
+Yeniden bağlanma: kopma sonrası sorunsuz devam
 
-Navigasyon: Devices ekranına geçiş ve cihaz seçimi
+Navigasyon: Devices ekranına geçiş & cihaz seçimi
 
-🛣️ Roadmap / Geliştirme Notları
-Başlangıçta ESP-01 Wi-Fi ile HTTP/Retrofit yaklaşımı planlandı; fiziksel modül temin edilemediği için nihai çözüm Bluetooth olarak bırakıldı.
+🛣️ Roadmap
 
-İleride Wi-Fi modülü entegre edilirse Bluetooth/TCP arasında geçiş kolay olacak şekilde arayüz sadeleştirildi.
+Başlangıçta ESP-01 Wi-Fi ile HTTP/Retrofit planlandı; modül temin edilemediği için nihai çözüm Bluetooth olarak bırakıldı.
 
-## 🖼️ Ekran Görüntüleri
+İleride Wi-Fi entegre edilirse Bluetooth/TCP geçişi kolay olacak şekilde arayüz ve yapı sadeleştirildi.
 
-### Dashboard
-![Dashboard](docs/dashboard.jpeg)
+🖼️ Ekran Görüntüleri
 
-### Devices
-![Devices](docs/devices.jpeg)
+Küçük görünsün diye HTML ile boyutlandırılmıştır. Tıklayınca dosyayı açabilirsiniz.
 
-### Schedules
-![Schedules](docs/schedules.jpeg)
+<p align="center"> <a href="docs/dashboard.jpeg"><img src="docs/dashboard.jpeg" width="260" /></a> <a href="docs/devices.jpeg"><img src="docs/devices.jpeg" width="260" /></a> <a href="docs/schedules.jpeg"><img src="docs/schedules.jpeg" width="260" /></a> </p>
