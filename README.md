@@ -13,7 +13,7 @@ Uygulama, mikrodenetleyici tarafıyla **Classic Bluetooth (SPP)** (örn. HC-05) 
 ## Kurulum ve Çalıştırma
 1. Repo’yu klonla:
    ```bash
-   git clone <REPO_URL>
+   git clone https://github.com/zeyz9y/SmartHome.git
 2.Android Studio ile aç.
 3.Gradle Sync bittikten sonra gerçek cihaza çalıştır (Bluetooth için emülatör önerilmez).
 
