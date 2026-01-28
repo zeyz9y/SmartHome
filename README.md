@@ -83,42 +83,42 @@ Uygulama, **STM32** üzerinde çalışan sistemden **DHT11 sıcaklık/nem verisi
 4. Telefon Bluetooth ayarlarından HC-05 ile eşleştir (PIN: 1234 / 0000).
 5. Uygulamada Devices ekranından cihazı seç ve bağlan.
 
-Android 12+ Bluetooth İzinleri (API 31+)
+## Android 12+ Bluetooth İzinleri (API 31+)
 
 Android 12 ve üzeri sürümlerde Bluetooth izinleri runtime istenir:
 
-BLUETOOTH_CONNECT
+- BLUETOOTH_CONNECT
 
-BLUETOOTH_SCAN (tarama yapılıyorsa)
+- BLUETOOTH_SCAN (tarama yapılıyorsa)
 
 İzin yönetimi projede “ihtiyaç olduğunda isteme” yaklaşımıyla ele alınmıştır.
 
-Android 13+ Bildirim İzni (API 33+)
+## Android 13+ Bildirim İzni (API 33+)
 
 Alerts/Schedules ekranlarında bildirim kullanılıyorsa:
 
-POST_NOTIFICATIONS runtime izni gerekebilir.
+- POST_NOTIFICATIONS runtime izni gerekebilir.
 
-Test Senaryoları
+## Test Senaryoları
 
-Eşleştirme: Telefon ↔ HC-05
+- Eşleştirme: Telefon ↔ HC-05
 
-Bağlantı: Dashboard’tan bağlanma ve durum takibi
+- Bağlantı: Dashboard’tan bağlanma ve durum takibi
 
-Veri akışı: 1 saniyede bir sıcaklık/nem güncellemesi
+- Veri akışı: 1 saniyede bir sıcaklık/nem güncellemesi
 
-LED kontrol: switch ile LEDON / LEDOFF
+- LED kontrol: switch ile LEDON / LEDOFF
 
-Yeniden bağlanma: kopma sonrası sorunsuz devam
+- Yeniden bağlanma: kopma sonrası sorunsuz devam
 
-Navigasyon: Devices ekranına geçiş & cihaz seçimi
+- Navigasyon: Devices ekranına geçiş & cihaz seçimi
 
-Roadmap
+## Roadmap
 
-Başlangıçta ESP-01 Wi-Fi ile HTTP/Retrofit planlandı; modül temin edilemediği için nihai çözüm Bluetooth olarak bırakıldı.
+- Başlangıçta ESP-01 Wi-Fi ile HTTP/Retrofit planlandı; modül temin edilemediği için nihai çözüm Bluetooth olarak bırakıldı.
 
-İleride Wi-Fi entegre edilirse Bluetooth/TCP geçişi kolay olacak şekilde arayüz ve yapı sadeleştirildi.
+- İleride Wi-Fi entegre edilirse Bluetooth/TCP geçişi kolay olacak şekilde arayüz ve yapı sadeleştirildi.
 
-Ekran Görüntüleri
+## Ekran Görüntüleri
 
 <p align="center"> <a href="docs/dashboard.jpeg"><img src="docs/dashboard.jpeg" width="260" /></a> <a href="docs/devices.jpeg"><img src="docs/devices.jpeg" width="260" /></a> <a href="docs/schedules.jpeg"><img src="docs/schedules.jpeg" width="230" /></a> </p>
